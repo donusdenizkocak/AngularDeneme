@@ -1,0 +1,90 @@
+<div class="container">
+    <button type="button" (click)="showEkle()" class="btn btn-primary"> + Ekle</button>
+    <button type="button" class="btn btn-secondary ms-3" (click)="listeyedon()">Listeye Dön</button>
+    <div class="odeme-list mt-5" *ngIf="showlist">
+      <div class="row">
+        <div class="col-md-3">
+          <h5 class="border-bottom">Filtrele</h5>
+            <label for="slcFiltreAy">Dönem Filtresi</label>
+            <select class="form-select" #filtreAy id="slcFiltreAy" (change)="listOdemeler(filtreAy.value)">
+              <option value="0">Tümü</option>
+              <option *ngFor="let ay of aylar" [value]="ay.id">{{ ay.adi }}</option>
+            </select>
+        </div>
+        <div class="col-md-9">
+          <table class="table">
+            <thead>
+              <th scope="col">ID</th>
+              <th scope="col">Blok / Daire No</th>
+              <th scope="col">Ad Soyad</th>
+              <th scope="col">Aidat Dönemi</th>
+              <th scope="col">Ödeme Tarihi</th>
+              <th scope="col">Ödeme Tutarı</th>
+              <th scope="col">İşlemler</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of odemeListesi">
+                <td scope="col">{{ item.id }}</td>
+                <td>{{ item.hane }}</td>
+                <td>{{ item.adsoyad }}</td>
+                <td>{{ item.donem }}</td>
+                <td>{{ item.odemeTarihi }}</td>
+                <td>{{ item.tutar }}</td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-warning" (click)="duzenle(item.id)">Düzenle</button>
+                  <button type="button" class="btn btn-sm btn-danger ms-3" (click)="odemeSil(item.id)">Sil</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+   
+    </div>
+  <div class="odemegiris" *ngIf="showedit">
+      <div class="row">
+        <div class="col-md-6">
+  
+  
+  <form #form="ngForm" (ngSubmit)="kaydet()">
+    <input type="hidden" [(ngModel)]="editOdeme.id" name="id" />
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcKat">Blok</label>
+        <select class="form-select" name="blokID" [(ngModel)]="blokNO" id="slcBlok" #slctBlok (change)="getHanes(slctBlok.value)">
+          <option value="0">Blok Seç</option>
+          <option *ngFor="let b of bloklar" [value]="b.id">{{ b.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="slcKat">Daire</label>
+        <select class="form-select" [(ngModel)]="editOdeme.haneID" name="haneID" id="slcHane" #slctHane>
+          <option *ngFor="let d of blokHaneler" [value]="d.id">{{ d.daireno }}</option>
+        </select>
+      </div>
+    </div>
+  <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcCins">Aidat Dönemi</label>
+        <select class="form-select" [(ngModel)]="editOdeme.ayID" name="ayID" id="slcAy">
+          <option *ngFor="let ay of aylar" [value]="ay.id">{{ ay.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtBarkod">Ödeme Tutarı</label>
+          <input id="txtBarkod" type="text" [(ngModel)]="editOdeme.tutar" name="tutar" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">KAYDET</button>
+    </form>
+  
+  
+  </div>
+  </div>
+  
+    </div>
+  </div>
+  

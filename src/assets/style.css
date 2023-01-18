@@ -1,0 +1,2 @@
+.form-control.ng-invalid.ng-touched{outline: solid 3px rgba(240, 81, 81, 0.3);}
+.form-control.ng-valid.ng-touched{outline: solid 3px rgb(11, 170, 6,0.3);}

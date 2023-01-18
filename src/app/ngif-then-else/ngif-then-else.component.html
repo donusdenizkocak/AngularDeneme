@@ -1,0 +1,71 @@
+<div class="container m-5">
+    <div class="spinner-border" role="status" *ngIf="showSpinner"><span class="visually-hidden">Loading...</span></div>
+
+    <div class="row" *ngIf="show == 'liste'">
+      <div class="col-md-4" *ngFor="let l of mdl">
+        <div class="card position-relative">
+            <div class="ucretsiz-kargo" *ngIf="l.ucretsizkargo"><img src="/assets/img/ucretsiz-kargo.png" alt="ücretsiz kargo"></div>
+          <img
+            src="/assets/img/{{ l.image }}"
+            class="card-img-top"
+            alt="{{ l.brand }} {{ l.model }}"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ l.brand }} {{ l.model }}</h5>
+            <p class="card-text">
+              <span class="fs-5 text-success fw-bold" *ngIf="l.price>0;else stokyok">€ {{ l.price }} </span>
+              <ng-template #stokyok><span class="fs-5 text-danger">Stokta Yok</span></ng-template>
+            </p>
+            <div class="alert alert-danger" *ngIf="l.stok<=3">Sadece {{l.stok}} adet ürün kaldı</div>
+            <div class="alert alert-warning" *ngIf="l.stok>3 && l.stok<10">Stokta 10 taneden az ürün kaldı</div>
+            
+            <!-- bgIf blogunda şart doğruysa then ile belirtilen bölüm, yanlışsa else ile belirtilen bölüm çalışır -->
+            <div *ngIf="l.price>0;then detaybtn else haberbtn"></div>
+            <ng-template #detaybtn> <button type="button" class="btn btn-primary" (click)="detayGoster(l.id)">Ürün Detay</button></ng-template>
+            <ng-template #haberbtn> <button type="button" class="btn btn-sm btn-outline-info">Gelince Haber Ver</button></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- DETAY ALANI -->
+    <div class="row" *ngIf="show == 'detay'">
+      <div class="col-md-3">
+        <img
+          src="/assets/img/{{ detayoge.image }}"
+          alt="{{ detayoge.brand }} {{ detayoge.model }}"
+          class="card-img-top"
+        />
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Marka</th>
+              <td>{{ detayoge.brand }}</td>
+            </tr>
+            <tr>
+              <th>Model</th>
+              <td>{{ detayoge.model }}</td>
+            </tr>
+            <tr>
+              <th>Islemci</th>
+              <td>{{ detayoge.processor }}</td>
+            </tr>
+            <tr>
+              <th>RAM</th>
+              <td>{{ detayoge.ram }}</td>
+            </tr>
+            <tr>
+              <th>Fiyat</th>
+              <td class="text-success fw-bold">{{ detayoge.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="geri()">
+          Geri
+        </button>
+      </div>
+    </div>
+  </div>
+  
+

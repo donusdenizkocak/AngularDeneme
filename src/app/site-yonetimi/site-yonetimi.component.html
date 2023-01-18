@@ -1,0 +1,36 @@
+<div class="container">
+<form #form="ngForm" (ngSubmit)="kaydet()">
+<input type="hidden" [(ngModel)]="editOdeme.id" name="id">
+<div class="row mt-5">
+    <div class="col-md-3">
+      <label for="slcKat">AYLAR</label>
+      <select class="form-select" [(ngModel)]="editOdeme.ayID" id="slcKat"  name="ayID"> 
+        <option value="0">Ay Seç</option>
+        <option *ngFor="let ay of aylar" [value]="ay.id">{{ ay.adi }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="slcblok">BLOK</label>
+      <select class="form-select"  id="slcblok" name="blok" #slctBlok (change)="getHane(slctBlok.value)">
+        <option value="0">Blok Seç</option>
+        <option *ngFor="let b of blok" [value]="b.id">{{ b.adi }}</option>
+      </select>
+    </div>
+   </div>
+   <div class="row mt-5">
+      <div class="col-md-3">
+        <label for="slcHane">HANE</label>
+        <select class="form-select" [(ngModel)]="editOdeme.haneID" id="slcHane" name="hane">
+          <option value="0">Hane Seç</option>
+          <option *ngFor="let f of filtrehane" [value]="f.id">{{ f.daireno }}</option>
+        </select>
+    </div>
+    <div class="col-md-3">    
+          <label for="miktar">Miktar</label>
+          <input id="miktar" type="number"  class="form-control" name="miktar" [(ngModel)]="editOdeme.tutar" />
+      </div>
+  </div>
+<button type="submit" class="btn btn-primary mt-4" >KAYDET</button>
+</form>
+</div>
+

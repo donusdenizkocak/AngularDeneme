@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form #form="ngForm" (ngSubmit)="kelimeKaydet(txtKelime.value,txtTercume.value,txtCumle.value)">
+                <div class="mb-3">
+                    <label for="txtKelime">Kelime</label>
+                    <input type="text" id="txtKelime"  #txtKelime required class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="txtTercume">Tercümesi</label>
+                    <input type="text" id="txtTercume"  #txtTercume required class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="txtCumle">Cümle Ekle</label>
+                    <input type="text" id="txtCumle"  #txtCumle  class="form-control"/>
+                </div>   
+                
+                <button type="submit" class="btn btn-primary">EKLE</button> 
+            </form>
+        </div>
+    </div>
+</div>
+

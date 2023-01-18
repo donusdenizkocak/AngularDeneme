@@ -1,0 +1,48 @@
+
+<div class="row" style="margin-top:100px;">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">İmages</th>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Processor</th>
+            <th scope="col">RAM</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let l of laptops" [class.bg-success]="l.price > 20000" [class.d-none]="l.price < 10000">
+            <th scope="row"><img src="/assets/img/{{l.image}}" alt="resim" width="100px" ></th>
+            <td>{{l.id}}</td>
+            <td>{{l.brand}}</td>
+            <td>{{l.model}}</td>
+            <td>{{l.processor}}</td>
+            <td>{{l.ram}}</td>
+            <td>{{l.price}}</td>
+            <td><button class="btn btn-primary btn-sm">Edit</button> 
+                <button class="btn btn-danger btn-sm">Delete</button></td>
+          </tr> -->
+          <tr *ngFor="let l of laptops;index as i;first as isFirst;last as isLast" [class.bg-primary]="isLast">
+              <th scope="row"><img src="/assets/img/{{l.image}}" alt="{{l.brand}} - {{l.model}}" width="100px" ></th>
+              <td [class.bg-primary]="isFirst" [class.bg-success]="isLast">{{i+1}}</td>
+              <td>{{l.brand}}</td>
+              <td>{{l.model}}</td>
+              <td>{{l.processor}}</td>
+              <td>{{l.ram}}</td>
+              <td>{{l.price}}</td>
+              <td><button class="btn btn-primary btn-sm">Edit</button> 
+                  <button class="btn btn-danger btn-sm">Delete</button></td>
+             </tr>
+        </tbody>
+      </table>
+      <div class="mt-5">
+        <ul>
+          <li *ngFor="let marka of markalar" [class.bg-bordo]="marka.length>=5">{{ marka }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>

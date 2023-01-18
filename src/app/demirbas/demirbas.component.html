@@ -1,0 +1,68 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtBarkod">Barkod Kodu</label>
+          <input id="txtBarkod" type="text" #txtBarkod class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtAdet">Adet</label>
+          <input id="txtAdet" type="number" #txtAdet class="form-control" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcKat">Kategori</label>
+        <select class="form-select" #slctKategori id="slcKat" (change)="getCins(slctKategori.value)">
+          <option value="0">Kategori Seç</option>
+          <option *ngFor="let k of kats" [value]="k.id">{{ k.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="slcCins">Eşya Cinsi</label>
+        <select class="form-select" #slctCins id="slcCins">
+          <option *ngFor="let c of filtreCins" [value]="c.id">{{ c.adi }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="mb-3">
+          <label for="txtAciklama">Açıklama</label>
+          <textarea id="txtAciklama" #txtAciklama class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcZimmet">Zimmet Personel</label>
+        <select class="form-select" #slctPersonel id="slcZimmet">
+          <option value="0">Personel Seç</option>
+          <option *ngFor="let k of kats" [value]="k.id">{{ k.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtZNot">Zimmet Notu</label>
+          <input id="txtZNot" type="text" #txtZNot class="form-control" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <input type="checkbox" #chkAktif id="chkAktif" class="form-check-input" />
+        <label for="chkAktif" class="form-check-label">Aktif</label>
+      </div>
+    </div>
+  
+    <button type="button" class="btn btn-primary mt-4" (click)="esyaKaydet(txtBarkod.value,slctKategori.value,slctCins.value,txtAdet.value,txtAciklama.value,slctPersonel.value,txtZNot.value,chkAktif.checked);txtBarkod.value='';txtAdet.value='';txtZNot.value='';slctKategori.value='0';slctCins.value='';slctPersonel.value='0';">KAYDET</button>
+  
+  </div>
+  

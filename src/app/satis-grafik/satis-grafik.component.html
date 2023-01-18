@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-2">AYLAR</div>
+        <div class="col-md-4">SATIŞLAR</div>
+    </div>
+    <div class="row" *ngFor="let item of satislar">
+        <div class="col-md-2">{{ item.ayadi }}</div>
+        <div class="col-md-4">
+            <span class="graf" [style.width.px]="item.genislik"></span>
+            <span class="satis-bilgi">{{item.satis}} - %{{item.yuzde}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table mt-5">
+        <tbody>
+            <tr>
+                <td *ngFor="let item2 of satislar"><span>{{ item2.ayadi }}</span></td>
+            </tr>
+            <tr>
+                <td *ngFor="let item1 of satislar"><span class="grafVertical" [style.height.px]="item1.genislik"></span> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <button type="button" class="btn btn-primary" (click)="yeniKayit()"> + EKLE</button>
+    <div class="liste" *ngIf="showlist">
+      <table class="table">
+        <thead>
+          <th scope="col">ID</th>
+          <th scope="col">Eşya Cinsi</th>
+          <th scope="col">Adet</th>
+          <th scope="col">İşlemler</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let esya of esyaListe">
+            <td scope="col">{{ esya.id }}</td>
+            <td >{{ esya.cinsAdi }}</td>
+            <td >{{ esya.adet }}</td>
+            <td ><a (click)="duzenle(esya.id)" class="btn btn-success">Düzenle</a>
+           <a (click)="silPasif(esya.id)" class="btn btn-danger ps-2">Sil</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+
+
+    <!---   EŞYA DÜZENLE   ---->
+    <div class="esyaduzenle" *ngIf="showedit">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="listeyedon()">Geri</button>
+    <form #form="ngForm" (ngSubmit)="kaydet()">
+      <input type="hidden" [(ngModel)]="editEsya.id" name="id"/>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtBarkod">Barkod Kodu</label>
+          <input id="txtBarkod" type="text" [(ngModel)]="editEsya.barkodKodu" class="form-control" name="barkodKodu"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtAdet">Adet</label>
+          <input id="txtAdet" type="number" [(ngModel)]="editEsya.adet" class="form-control" name="adet"/>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcKat">Kategori</label>
+        <select class="form-select" [(ngModel)]="editEsya.kategoriID" id="slcKat" #slctKategori (change)="getCins(slctKategori.value)" name="kategoriID">
+          <option value="0">Kategori Seç</option>
+          <option *ngFor="let k of kats" [value]="k.id">{{ k.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="slcCins">Eşya Cinsi</label>
+        <select class="form-select" [(ngModel)]="editEsya.cinsID" id="slcCins" name="cinsID">
+          <option *ngFor="let c of filtreCins" [value]="c.id">{{ c.adi }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="mb-3">
+          <label for="txtAciklama">Açıklama</label>
+          <textarea id="txtAciklama" [(ngModel)]="editEsya.aciklama" class="form-control" name="aciklama"></textarea>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <label for="slcZimmet">Zimmet Personel</label>
+        <select class="form-select" [(ngModel)]="editEsya.zimmetPersonelID" id="slcZimmet" name="zimmetPersonelID">
+          <option value="0">Personel Seç</option>
+          <option *ngFor="let k of kats" [value]="k.id">{{ k.adi }}</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="txtZNot">Zimmet Notu</label>
+          <input id="txtZNot" type="text" [(ngModel)]="editEsya.zimmetNotu" class="form-control" name="zimmetNotu"/>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <input type="checkbox" [(ngModel)]="editEsya.aktif" id="chkAktif" class="form-check-input" name="aktif"/>
+        <label for="chkAktif" class="form-check-label">Aktif</label>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary mt-4" >KAYDET</button>
+</form>
+</div>
+  </div>
+  

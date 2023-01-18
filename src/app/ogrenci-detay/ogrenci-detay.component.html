@@ -1,0 +1,41 @@
+<div class="container">
+    <button type="button" class="btn btn-sm btn-info fw-bold" (click)="artir()">+</button>
+    <button type="button" class="btn btn-sm btn-info ms-3 fw-bold" (click)="azalt()">-</button>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="col" rowspan="3"><img src="/assets/img/2.jpg" alt="öğrenci resmi" width="100px" class="img-fluid" ></th>
+            <th scope="col">Adı:</th>
+            <td scope="col" [style.font-size.px]="fontboyut">{{ogr.isim}}</td>
+            <th scope="col">Soyadı:</th>
+            <td scope="col">{{ogr.soyisim}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Sınıf:</th>
+            <td scope="col">{{ogr.sinif}}</td>
+            <th scope="col">Okul No:</th>
+            <td scope="col">{{ogr.okulno}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Cinsiyet:</th>
+            <td scope="col" [class.pembebg]="ogr.cinsiyet == 'K' || ogr.cinsiyet == 'Kadın' || ogr.cinsiyet == 'F' || ogr.cinsiyet == 'Female' ">{{ogr.cinsiyet == "K" ? "Kadın" : ogr.cinsiyet == "E" ? "Erkek" : "Belirtilmemiş"}}</td>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <ul>
+                    <li *ngFor="let d of ogr.dersler">{{d.name}}</li>
+                </ul>
+            </td>
+            <td colspan="2">
+                <ul>
+                    <li *ngFor="let d of ogr.dersler">{{d.ogretmen}}</li>
+                </ul>
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+</div>

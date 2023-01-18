@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form #form="ngForm" (ngSubmit)="register()">
+                <div class="mb-3">
+                    <label for="txtadiSoyadi">Ad Soyad</label>
+                    <input type="text" id="txtadiSoyadi" minlength="2" [(ngModel)]="model.adiSoyadi" name="txtadiSoyadi" #txtadiSoyadi="ngModel" required class="form-control"/>
+                    <div class="alert alert-danger" *ngIf="txtadiSoyadi.invalid && txtadiSoyadi.touched">
+                        <p *ngIf="txtadiSoyadi.errors.required">Lütfen isim giriniz</p>
+                        <p *ngIf="txtadiSoyadi.errors.minlength">Lütfen en az iki karakter giriniz</p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="txtokul">Okul Adı</label>
+                    <input type="text" id="txtokul" [(ngModel)]="model.okul" name="txtokul" #txtokul required class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="slcSinif" >Sınıf Seç</label>
+                <select #slcSinif id="slcSinif" class="form-select" [(ngModel)]="model.sinif" name="slcSinif">
+                     <option *ngFor="let item of sayilar" [value]="item.no">{{ item.text }}</option>
+                </select> 
+               </div>
+            
+                <div class="mb-3">
+                    <label for="txtUserName">Kullanıcı Eposta</label>
+                    <input type="email" id="txtUserName" [(ngModel)]="model.email" name="txtUserName" #txtUserName required class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="txtPassword">Şifre</label>
+                    <input type="password" id="txtPassword" [(ngModel)]="model.password" name="txtPassword" minlength="8" #txtPassword required class="form-control" minlength="5" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.]).{8,}$"/>
+                    <div class="small">En az 8 karekter<br>
+                    En az 1 büyük harf<br>
+                    En az 1 küçük harf<br>
+                    En az 1 sayı<br>
+                    En az 1 özel karakter(%,@,&,+.. gibi) girilmelidir.<br>
+                </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">GİRİŞ</button> 
+            </form>
+        </div>
+    </div>
+</div>

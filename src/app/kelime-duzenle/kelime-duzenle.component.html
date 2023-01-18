@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="alert alert-danger" *ngIf="kelimeyok">Kelime Bulunamadı.<br>
+    <a [routerLink]="['kelimeler']"> Kelime Listesine Dön.</a> </div>
+    <div class="row" *ngIf="model">
+        <div class="col-md-6">
+            <form #form="ngForm" (ngSubmit)="form.valid ? kelimeDuzenle(): alertify.error('Lütfen formu doldurunuz')">
+                <input type="hidden" [(ngModel)]="model.id" name="hdnID" id="hdnID"/>
+                <div class="mb-3">
+                    <label for="txtKelime">Kelime</label>
+                    <input type="text" id="txtKelime" [(ngModel)]="model.kelime" name="txtKelime" #txtKelime required class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="txtTercume">Türkçesi</label>
+                    <input type="text" id="txtTercumesi" [(ngModel)]="model.tercumesi" name="txtTercumesi" #txtTercumesi required class="form-control"/>
+                </div>
+                  
+                
+                <button type="submit" class="btn btn-primary">Kaydet</button> 
+            </form>
+        </div>
+    </div>
+</div>

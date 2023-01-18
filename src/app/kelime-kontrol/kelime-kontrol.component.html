@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+    <div class="spinner-border" role="status" *ngIf="showSpinner">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  <div class="fs-1 text-success">
+    {{ kontrolkelime.cevap }}
+  </div>
+  
+  <div class="mb-3">
+    <label for="txtCevap">Cevabınız</label>
+    <input type="text" id="txtCevap" class="form-control" #txtCevap />
+  </div>
+  <button type="button" class="btn btn-success btn-lg" (click)="kontrolet(txtCevap.value)">Kontrol Et</button>
+  
+  <div class="alert alert-warning">Gösterim Sayısı: {{ kontrolkelime.gosterSayi }}</div>
+  <div class="alert alert-success">Doğru Sayısı: {{ kontrolkelime.dogruSayi }}</div>
+  </div>
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary btn-lg my-5" (click)="yenikelime()">Yeni Kelime</button>
+  
+    <canvas #canvas width="600" height="220"></canvas>
+  </div>
+  </div>
+  </div>
+  

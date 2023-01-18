@@ -1,0 +1,62 @@
+<div class="row" style="margin-top:100px;">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">İmages</th>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Processor</th>
+            <th scope="col">RAM</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of mdl">
+            <th scope="row"><img src="/assets/img/{{l.image}}" alt="resim" width="100px" ></th>
+            <td>{{l.id}}</td>
+            <td>{{l.brand}}</td>
+            <td>{{l.model}}</td>
+            <td>{{l.processor}}</td>
+            <td>{{l.ram}}</td>
+            <td>{{l.price}}</td>
+            <td><button class="btn btn-primary btn-sm">Edit</button> 
+                <button class="btn btn-danger btn-sm">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+
+    <!--lapop ekleme formu-->
+    <div class="col-md-5">
+        <div class="mb-3">
+            <label for="txtBrand" class="form-control-label">Brand</label>
+            <input type="text" #txtBrand name="txtBrand" id="txtBrand" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtModel" class="form-control-label">Model</label>
+            <input type="text" #txtModel name="txtModel" id="txtModel" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtProcessor" class="form-control-label">Processor</label>
+            <input type="text" #txtProcessor name="txtProcessor" id="txtProcessor" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtRAM" class="form-control-label">RAM</label>
+            <input type="text" #txtRAM name="txtRAM" id="txtRAM" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtPrice" class="form-control-label">Price</label>
+            <input type="number" #txtPrice name="txtPrice" id="txtPrice" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="txtImage" class="form-control-label">Image File</label>
+            <input type="file" #txtImage name="txtImage" id="txtImage" class="form-control"/>
+        </div>
+        <button type="button"  class="mt-4 btn btn-success" (click)="kaydet(txtBrand.value,txtModel.value,txtProcessor.value,txtRAM.value,txtPrice.value,txtImage.files.length>0 ? txtImage.files[0].name : '')">KAYDET</button> 
+    </div>
+  </div>
+

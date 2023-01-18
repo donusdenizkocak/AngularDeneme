@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+         <div class="col-md-12">
+            <select #slcSayi id="slcSayi" (change)="getJsonData(slcSayi.value)">
+                <option value="0">Sayı Seçiniz</option>
+                 <option *ngFor="let item of sayilar" [value]="item.no">{{ item.text }}</option>
+            </select> 
+        </div> 
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="jsonData !=null">
+                <td>{{jsonData.userId}}</td>
+                <td>{{jsonData.id}}</td>
+                <td>{{jsonData.title}}</td>
+                <td>{{jsonData.body}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

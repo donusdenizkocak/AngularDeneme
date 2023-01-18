@@ -1,0 +1,10 @@
+.graf{height: 70px;display: inline-block;background-color: #b6fde5;border-bottom: solid 1px #84dbbe;}
+.grafVertical{width: 85px;display: inline-block;background-color: #b6fde5;border-bottom: solid 1px #84dbbe;}
+/* @keyframes grafAnim{
+    0%{height: 1%;}
+    100%{height: 100%;}
+} */
+.satis-bilgi{font-size: 0.8rem;color: a6a3a3;display: inline-block;margin-left: 15px;}
+
+
+/* animation-delay:5s ;animation-name: grafAnim;animation-duration: 1s; */

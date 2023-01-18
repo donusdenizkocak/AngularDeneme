@@ -1,0 +1,80 @@
+<div class="container" style="margin-top: 150px">
+  <!-- <div class="row">
+    <div class="col-md-6 bg-success p-5" *ngIf="!showDetail">
+      <div class="fs-1">1. BÖLÜM</div>
+      <button type="button" class="btn btn-dark" (click)="detaygoster()">
+        Göster
+      </button>
+    </div>
+    <div class="col-md-6 bg-info p-5" *ngIf="showDetail">
+      <div class="fs-1">2. BÖLÜM</div>
+      <button type="button" class="btn btn-dark" (click)="detaygizle()">
+        Gizle
+      </button>
+    </div>
+  </div> -->
+
+  <div class="row" *ngIf="show == 'liste'">
+    <div class="col-md-4" *ngFor="let l of mdl">
+      <div class="card">
+        <img
+          src="/assets/img/{{ l.image }}"
+          class="card-img-top"
+          alt="{{ l.brand }} {{ l.model }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ l.brand }} {{ l.model }}</h5>
+          <p class="card-text">
+            <span class="fs-5 text-success fw-bold">€ {{ l.price }}</span>
+          </p>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="detayGoster(l.id)"
+          >
+            Ürün Detay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- DETAY ALANI -->
+  <div class="row" *ngIf="show == 'detay'">
+    <div class="col-md-3">
+      <img
+        src="/assets/img/{{ detayoge.image }}"
+        alt="{{ detayoge.brand }} {{ detayoge.model }}"
+        class="card-img-top"
+      />
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Marka</th>
+            <td>{{ detayoge.brand }}</td>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <td>{{ detayoge.model }}</td>
+          </tr>
+          <tr>
+            <th>Islemci</th>
+            <td>{{ detayoge.processor }}</td>
+          </tr>
+          <tr>
+            <th>RAM</th>
+            <td>{{ detayoge.ram }}</td>
+          </tr>
+          <tr>
+            <th>Fiyat</th>
+            <td class="text-success fw-bold">{{ detayoge.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="geri()">
+        Geri
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+<div class="row">
+    <div class="col-md-3">
+        <div class="my-5" *ngIf="girisyapildi">
+        <ul >
+            <li *ngIf="tur== 'Admin'"><a  [routerLink]="['/ogrenciekle']">Öğrenci Ekle</a></li>
+            <li><a  [routerLink]="['/ogrenci-detay']">Öğrenci Detay</a></li>
+            <li><a  [routerLink]="['/satis-grafik']">Satış Grafik</a></li>
+            <li><a  [routerLink]="['/demirbas']">Demirbaş</a></li>
+            <li><a  [routerLink]="['/demirbas2']">Demirbaş 2 ngModel</a></li>
+          </ul>
+       <button type="button" (click)="cikis()">Çıkış</button>
+    </div>
+     <div class="my-5" *ngIf="!girisyapildi">
+        <h4 class="border-bottom">Kullanıcı Girişi</h4>
+        <form #form="ngForm" (ngSubmit)="login()">
+            <div class="mb-3">
+                <label for="txtUserName">Kullanıcı Adı</label>
+                <input type="email" id="txtUserName" [(ngModel)]="model.email" name="txtUserName" #txtUserName required class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label for="txtPassword">Şifre</label>
+                <input type="password" id="txtPassword" [(ngModel)]="model.password" name="txtPassword" #txtPassword required class="form-control" minlength="5"/>
+            </div>
+            <button type="submit" class="btn btn-primary">GİRİŞ</button> 
+        </form>
+     </div>
+    </div>
+    <div class="col-md-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Kelime</th>
+                    <th>Tercümesi</th>
+                </tr>
+            </thead>
+          <tbody>
+              <tr *ngFor="let item of SonKelimeListesi">
+                 <td>{{item.kelime}}</td>
+                 <td>{{item.tercumesi}}</td>
+                 <td>
+                    <button type="button" class="btn btn-success" (click)="cumlegetir(item.id)">Detaylar</button>
+                    <button class="btn btn-danger" type="button" (click)="kelimeSil(item.id)">SİL</button>
+                 <!-- <button class="btn btn-danger" type="button" (click)="kelimeDuzenle(item.id)">Düzenle</button> -->
+                </td>
+              </tr>
+           </tbody>
+        </table>
+        <div *ngIf="cumle">     <!-- cumle değişkeni nul  veya undefined -->
+        <div class="fs-4 bg-secondary text-white border" *ngIf="cumle.kelimeID>0">       <!-- cumle değişkeni içindeli ID değeri 0 dan büyükse göstercd src-->
+            {{cumle.metin}}
+        </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
